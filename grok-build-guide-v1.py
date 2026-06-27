@@ -7,13 +7,20 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better look
+# Custom CSS
 st.markdown("""
 <style>
     .main-header {font-size: 2.5rem; font-weight: 700; color: #00D4FF;}
     .section-header {font-size: 1.6rem; margin-top: 1.5rem; color: #1E3A8A;}
-    .step-box {background-color: #f0f4f8; padding: 1rem; border-radius: 10px; margin: 0.5rem 0;}
-    .command-box {background-color: #1e2937; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace;}
+    .terminal-box {
+        background-color: #1e2937; 
+        color: #e2e8f0; 
+        padding: 1.2rem; 
+        border-radius: 8px; 
+        font-family: monospace;
+        white-space: pre-wrap;
+        line-height: 1.5;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -23,7 +30,8 @@ st.sidebar.markdown("**macOS Edition** — June 2026")
 
 page = st.sidebar.radio(
     "Navigate",
-    ["🏠 Home", "✅ Prerequisites", "📥 Installation", "🚀 Getting Started", 
+    ["🏠 Home", "✅ Prerequisites", "📥 Installation", 
+     "📋 Full Walkthrough", "🚀 Getting Started", 
      "✨ Key Features", "⌨️ Commands & Usage", "🛠️ Troubleshooting"]
 )
 
@@ -75,44 +83,74 @@ elif page == "📥 Installation":
     st.header("📥 Installation on macOS")
     
     st.markdown("### Step 1: Run the official installer")
-    
     st.code("curl -fsSL https://x.ai/cli/install.sh | bash", language="bash")
     
     st.markdown("### Step 2: Verify installation")
     st.code("grok --version", language="bash")
     
-    st.markdown("### Step 3: (Optional) Add to PATH if needed")
+    st.markdown("### Step 3: (Optional) Add to PATH")
     st.code("""
-# If 'grok' command not found after install:
 echo 'export PATH="$HOME/.grok/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 """, language="bash")
     
     st.success("Installation usually completes in under 10 seconds.")
 
+# ====================== FULL WALKTHROUGH ======================
+elif page == "📋 Full Walkthrough":
+    st.header("📋 Complete Installation & First Run Walkthrough")
+    
+    st.markdown("### 1. Install Grok Build")
+    st.markdown('<div class="terminal-box">Last login: Sat Jun 27 15:03:46 on console<br>'
+                'user@Mac ~ % curl -fsSL https://x.ai/cli/install.sh | bash<br>'
+                'Fetching latest stable version...<br>'
+                'Installing Grok 0.2.67 (macos-aarch64)...<br>'
+                '  Downloading grok 0.2.67...<br>'
+                '  Binary linked to /Users/user/.grok/bin/grok and /Users/user/.grok/bin/agent.<br>'
+                'Grok 0.2.67 installed to /Users/user/.grok/bin/grok<br>'
+                '  Updated /Users/user/.grok/bin in PATH in /Users/user/.zshrc.<br><br>'
+                'Restart your terminal, then run \'grok\' to get started!<br>'
+                'user@Mac ~ % </div>', unsafe_allow_html=True)
+    
+    st.markdown("### 2. Verify Installation")
+    st.markdown('<div class="terminal-box">Last login: Sat Jun 27 15:06:36 on ttys000<br>'
+                'user@Mac ~ % grok --version<br>'
+                'grok 0.2.67 (03e13f99286)<br>'
+                'user@Mac ~ % </div>', unsafe_allow_html=True)
+    
+    st.markdown("### 3. Start Grok Build in Your Project")
+    st.markdown('<div class="terminal-box">user@Mac ~ % cd ~/my-project<br>'
+                'user@Mac my-project % grok</div>', unsafe_allow_html=True)
+    
+    st.info("**Authentication Step**")
+    st.markdown("""
+    Grok Build will prompt you to sign in.  
+    A code will appear in the terminal similar to: **A1B2-C3D4**
+    
+    1. Open the link shown in the terminal  
+    2. Enter the code **A1B2-C3D4**  
+    3. Sign in with your x.com account  
+    4. Authorize the app
+    """)
+    
+    st.success("✅ You are now ready to use Grok Build!")
+
 # ====================== GETTING STARTED ======================
 elif page == "🚀 Getting Started":
     st.header("🚀 Getting Started on macOS")
     
     st.markdown("### 1. Navigate to your project")
-    st.code("cd ~/Projects/my-awesome-app", language="bash")
+    st.code("cd ~/my-project", language="bash")
     
-    st.markdown("### 2. Start Grok Build")
+    st.markdown("### 2. Launch Grok Build")
     st.code("grok", language="bash")
     
-    st.info("On first launch, Grok Build will open your browser for **OAuth authentication** with your xAI account.")
+    st.info("On first launch, Grok Build will guide you through browser-based OAuth authentication.")
     
-    st.markdown("### Alternative: Use API Key (headless/non-browser)")
+    st.markdown("### Alternative: Headless mode with API Key")
     st.code("""
 export XAI_API_KEY="xai-your-key-here"
 grok
-""", language="bash")
-    
-    st.markdown("### Quick first commands inside Grok Build")
-    st.code("""
-Explain this repo.
-@src/main.py Walk me through this file.
-grok inspect          # See what config/skills it detected
 """, language="bash")
 
 # ====================== KEY FEATURES ======================
