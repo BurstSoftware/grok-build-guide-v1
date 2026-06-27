@@ -24,7 +24,7 @@ st.sidebar.markdown("**macOS Edition** — June 2026")
 page = st.sidebar.radio(
     "Navigate",
     ["🏠 Home", "✅ Prerequisites", "📥 Installation", "🚀 Getting Started", 
-     "✨ Key Features", "⌨️ Commands & Usage", "🛠️ Troubleshooting", "🚀 Deploy This App"]
+     "✨ Key Features", "⌨️ Commands & Usage", "🛠️ Troubleshooting"]
 )
 
 st.sidebar.markdown("---")
@@ -179,24 +179,6 @@ source ~/.zshrc
     
     with st.expander("Want to update Grok Build?"):
         st.write("Just re-run the install command — it will update automatically.")
-
-# ====================== DEPLOY THIS APP ======================
-elif page == "🚀 Deploy This App":
-    st.header("🚀 How to Deploy This Streamlit App")
-    
-    st.markdown("### 1. Create `requirements.txt`")
-    st.code("streamlit", language="text")
-    
-    st.markdown("### 2. Push to GitHub")
-    st.write("Create a new repo and push `app.py` + `requirements.txt`.")
-    
-    st.markdown("### 3. Deploy on Streamlit Cloud (Free)")
-    st.write("1. Go to [share.streamlit.io](https://share.streamlit.io)")
-    st.write("2. Connect GitHub → New app")
-    st.write("3. Select your repo and `app.py`")
-    st.write("4. Deploy!")
-    
-    st.success("Your guide app will be live at a public URL in ~1 minute.")
 
 # Footer
 st.markdown("---")
