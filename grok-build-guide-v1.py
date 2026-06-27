@@ -62,8 +62,9 @@ if page == "🏠 Home":
 # ====================== PREREQUISITES ======================
 elif page == "✅ Prerequisites":
     st.header("✅ Prerequisites")
-    # ... (content unchanged)
+    
     st.markdown("Before installing Grok Build on macOS:")
+    
     checklist = [
         "macOS (Apple Silicon or Intel supported)",
         "Terminal app (built-in or iTerm2/WezTerm recommended)",
@@ -71,22 +72,28 @@ elif page == "✅ Prerequisites":
         "Internet connection (for install + auth)",
         "A project folder with code (recommended)"
     ]
+    
     for item in checklist:
         st.checkbox(item, value=True, disabled=True)
+    
     st.warning("Grok Build is currently in **early beta**. Only available to SuperGrok / X Premium+ users.")
 
 # ====================== INSTALLATION ======================
 elif page == "📥 Installation":
     st.header("📥 Installation on macOS")
+    
     st.markdown("### Step 1: Run the official installer")
     st.code("curl -fsSL https://x.ai/cli/install.sh | bash", language="bash")
+    
     st.markdown("### Step 2: Verify installation")
     st.code("grok --version", language="bash")
+    
     st.markdown("### Step 3: (Optional) Add to PATH")
     st.code("""
 echo 'export PATH="$HOME/.grok/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 """, language="bash")
+    
     st.success("Installation usually completes in under 10 seconds.")
 
 # ====================== FULL WALKTHROUGH ======================
@@ -131,11 +138,15 @@ elif page == "📋 Full Walkthrough":
 # ====================== GETTING STARTED ======================
 elif page == "🚀 Getting Started":
     st.header("🚀 Getting Started on macOS")
+    
     st.markdown("### 1. Navigate to your project")
     st.code("cd ~/my-project", language="bash")
+    
     st.markdown("### 2. Launch Grok Build")
     st.code("grok", language="bash")
+    
     st.info("On first launch, Grok Build will guide you through browser-based OAuth authentication.")
+    
     st.markdown("### Alternative: Headless mode with API Key")
     st.code("""
 export XAI_API_KEY="xai-your-key-here"
@@ -145,6 +156,7 @@ grok
 # ====================== KEY FEATURES ======================
 elif page == "✨ Key Features":
     st.header("✨ Key Features")
+    
     features = [
         ("🗺️ Plan Mode", "Propose a full plan first. Review, comment, or rewrite before any code changes are made. Changes appear as clean diffs."),
         ("🤖 Parallel Sub-agents", "Break large tasks into multiple specialized agents that work simultaneously."),
@@ -154,6 +166,7 @@ elif page == "✨ Key Features":
         ("🔗 Git & Terminal Integration", "Stage, commit, run builds/tests with live output."),
         ("🧠 Memory & Context", "Remembers decisions across sessions."),
     ]
+    
     for title, desc in features:
         with st.expander(title, expanded=False):
             st.write(desc)
@@ -161,6 +174,7 @@ elif page == "✨ Key Features":
 # ====================== COMMANDS & USAGE ======================
 elif page == "⌨️ Commands & Usage":
     st.header("⌨️ Useful Commands")
+    
     st.markdown("### Core Commands")
     commands = {
         "Start interactive session": "grok",
@@ -169,9 +183,11 @@ elif page == "⌨️ Commands & Usage":
         "Use specific model": "grok -p \"task\" -m model-name",
         "Switch model inside TUI": "/model <name>",
     }
+    
     for cmd, desc in commands.items():
         st.markdown(f"**{cmd}**")
         st.code(desc, language="bash")
+    
     st.markdown("### Recommended First Prompts")
     st.code("""
 Explain this entire codebase.
@@ -183,22 +199,26 @@ Review this PR and suggest improvements.
 # ====================== TROUBLESHOOTING ======================
 elif page == "🛠️ Troubleshooting":
     st.header("🛠️ Common Issues & Fixes (macOS)")
+    
     with st.expander("`grok: command not found`"):
         st.code("""
 echo 'export PATH="$HOME/.grok/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 # or restart Terminal
 """, language="bash")
+    
     with st.expander("Authentication / Access Denied"):
         st.write("Make sure you have **SuperGrok** or **X Premium+**.")
         st.write("Try setting the API key manually:")
         st.code("export XAI_API_KEY=\"xai-...\"", language="bash")
+    
     with st.expander("Installer fails or hangs"):
         st.write("Run the command again or check your internet/firewall.")
+    
     with st.expander("Want to update Grok Build?"):
         st.write("Just re-run the install command — it will update automatically.")
 
 # ====================== UPDATED FOOTER (appears on every page) ======================
 st.markdown("---")
 st.caption("Compiled from official xAI documentation (docs.x.ai) • June 2026 • Grok Build is in early beta")
-st.caption("Made with love by Nathan Rossow at Burst Software Development | Email: burstsoftwaredevelopment@gmail.com | Mobile: 5078109226")
+st.caption("Made by Nathan Rossow at Burst Software Development | Email: burstsoftwaredevelopment@gmail.com | Mobile: 5078109226")
